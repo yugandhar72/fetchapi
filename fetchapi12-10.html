@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        async function getData(){
+     try{
+       let res=await fetch("https://fakestoreapi.com/products")
+       data= await res.json()            
+       data.forEach((e)=>{
+        let div = document.createElement("div")
+         let h=document.createElement("h1")
+         h.innerText=e.id
+
+         let p=document.createElement("p")
+         p.innerText=e.title
+
+         let hr=document.createElement("hr")
+
+         let img = document.createElement("img")
+         img.setAttribute("src",e.image)
+         img.style.height="150px"
+         img.style.width="150px"
+
+         div.style.border="1px solid black"
+        //  div.style.display="flex"
+        //  div.style.textAlign="center"
+
+
+         div.appendChild(h)
+         div.appendChild(p)
+         div.appendChild(img)
+         div.appendChild(hr)
+         container.appendChild(div)
+
+        
+       })
+     }catch(err){
+       throw new Error("customized error")
+     }
+   }
+    getData()
+    </script>
+</body>
+</html>
